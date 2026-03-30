@@ -55,10 +55,12 @@ Official Source
 Guidelines for Implementation of PM-KUSUM Scheme (MNRE)
 
 Page / Section:
-Background & Objective: Page 2
-Scheme Components (A, B, C): Page 2–3
-Financial Assistance (CFA): Page 11
-Implementation & Monitoring: Page 11–12
+Background & Objective: Page 2 
+Scheme Components (A, B, C): Page 2–3 ( 2 - i ,ii, ii)
+Financial Assistance (CFA): Page 11 (c,d)
+Implementation & Monitoring:
+component  II - Page 11–12 ( c,d,e)
+component III - page  15-17 (b,c,d,e) 
 
 
 
