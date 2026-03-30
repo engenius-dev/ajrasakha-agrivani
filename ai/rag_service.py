@@ -87,7 +87,7 @@ Respond with a JSON object in this EXACT format (raw JSON only, no markdown, no 
     # Step 5 — Call Gemini for final answer
     try:
         response = client.models.generate_content(
-            model="gemini-2.0-flash",
+            model="gemini-2.0-flash-lite",
             contents=prompt,
         )
         raw_text = response.text.strip()
