@@ -1,70 +1,38 @@
-<H1>Scheme Name:Pradhan Mantri Fasal Bima Yojana (PMFBY)</H1>
+# Scheme Name: Pradhan Mantri Fasal Bima Yojana (PMFBY)
+**State/Central:** Central Government Scheme (Implemented jointly by Central and State Governments) 
+**Target Audience:** Farmers cultivating notified crops (small, marginal, loanee, non-loanee, sharecroppers, and tenant farmers).
 
-<H4>State/Central:</H4>Central Government Scheme, Implemented jointly by Central + State Governments
-<h4>Target Audience:</h4> Farmers cultivating notified crops (small, marginal, loanee & non-loanee farmers)
+## 1. Objective
+To provide financial protection to farmers against crop loss, stabilize farmer income, encourage the use of modern agricultural practices, and ensure the flow of credit to the agriculture sector to contribute to food security and crop diversification.
 
-<H2>1.Objective</H2>
-To Provide financial protection to farmers against crop loss , Stabilize farmer income and Encourage use of modern agricultural practices
-<h2>2.Eligibility Criteria</h2>
-<h4>Land Ownership:</h4>Farmers growing notified crops in notified areas. It Includes: Loanee farmers (compulsory earlier, now optional) and Non-loanee farmers,  Must have insurable interest in the crop
-<h4>Age Limit:</h4> No specific age limit mentioned , but Must be an eligible farmer cultivating crops
-<h4>Crop Type:</h4> Applicable to notified crops only, such as:
-    <ul>
-     <li>Food crops (rice, wheat, etc.)</li>
-    <li> Oilseeds</li>
-    <li>Commercial / horticultural crops</li>
-    </ul>
-<h4>Citizenship:</h4> Must be an Indian farmer
-<h2>3.Exclusions (Who Cannot Apply):</h2>
-<ul>
-<li> Farmers not growing notified crops</li>
-<li>Farmers outside notified areas, Cases where: Wrong information is provided , Premium is not paid </li>
-</ul>
-<h2>4.Financial Benefits:</h2> 
-<li>Insurance Coverage</li> 
-<li>Provides crop insurance coverage against:
-<ul>1)Natural calamities (drought, flood, cyclone)</ul>
-<ul>2)Pests and disease</ul>
-</li>
-<li>Farmers pay very low premium:</li>
+## 2. Eligibility Criteria
+* **Land Ownership:** Must grow notified crops in notified areas. Includes loanee farmers (compulsory coverage), non-loanee farmers (optional coverage), sharecroppers, and tenant farmers. Must have an insurable interest in the crop.
+* **Age Limit:** No specific age limit is mentioned, but must be an eligible farmer cultivating crops.
+* **Crop Type:** Applicable to notified crops only, such as food crops (cereals, millets, and pulses), oilseeds, and annual commercial/horticultural crops.
+* **Citizenship:** Must be an Indian farmer.
 
-<ul>1) 2% for Kharif crops</ul>
-<ul>2) 1.5% for Rabi crops</ul>
-<ul>3) 5% for commercial/horticulture crops</ul>
-<ul>4) Remaining premium is subsidized by Government</ul>
+## 3. Exclusions (Who CANNOT apply)
+* Farmers not growing notified crops or farmers outside notified areas.
+* Cases where wrong information is provided or the premium is not paid.
+* Losses arising out of war and nuclear risks, malicious damage, and other preventable risks.
 
+## 4. Financial Benefits
+* **Insurance Coverage:** Provides crop insurance coverage against natural calamities (drought, flood, cyclone), pests, and diseases.
+* **Add-On Coverage:** States may consider providing optional add-on coverage for crop loss due to attacks by wild animals.
+* **Premium Subsidies:** Farmers pay a very low premium: 2% for Kharif crops, 1.5% for Rabi crops, and 5% for commercial/horticulture crops. The remaining premium is subsidized by the Government.
+* **Compensation Coverage:** Includes prevented sowing/planting/germination risk, standing crop loss, post-harvest losses, and localized disasters (hailstorm, landslide, inundation, cloud burst, and natural fire due to lightening).
 
-<li>Compensation Coverage</li>
-<ul>1)Prevented sowing</ul>
-<ul>2)Standing crop loss</ul>
-<ul>3)Post-harvest losses</ul>
-<ul>4)Localized disasters (hailstorm, landslide, etc.)</ul>
+## 5. Required Documents
+* **Identity Proof:** Aadhaar Number (Mandatory). Farmers not having an Aadhaar ID must submit proof of Aadhaar enrolment.
+* **Land / Crop Details:** Necessary documentary evidence of land records (e.g., Records of Right (RoR), Land Possession Certificate (LPC)) or applicable contract/agreement details for sharecroppers/tenant farmers. Crop sown details/sowing certificate.
+* **Bank Details:** Bank account number and IFSC code.
+* **Additional:** Insurance proposal form.
 
-<h2>5.Required Documents:</h2>
-<h4>Identity Proof: </h4>Aadhaar card (preferred)
-<h4> Land / Crop Details:</h4>
-<ul>
- <li>Land records or proof of cultivation</li>
- <li>Crop sown details</li>
-</ul>
-
-<h4>Bank Details:</h4>
-<ul>
- <li>Bank account number</li>
- <li>IFSC code</li>
-</ul>
-
-<h4>Additional:</h4>
-<ul>
-<li>Sowing certificate (if required)</li>
-<li>Insurance proposal form</li>
-</ul>
-<h4>Sowing certificate (if required):</h4>Insurance proposal form
-
-<h2>6.Official Source:</h2>
-<h4>Document Name:</h4> PMFBY Operational Guidelines
-<h4>Page/Sections:</h4>
-<li> Background & Objective → Section: "Introduction / Background", Page 1–2 </li> 
-<li> Scheme Components → Section: "Coverage of Risk", Page 3–5(8.1 - 9) </li>  
-<li>Financial Assistance (CFA) → Section: "Premium and Subsidy", Page 6–8 (10.1 - 12) </li> 
-<li> Implementation & Monitoring → Section: "Operational Mechanism / Administrative Structure", Page 9–14 (13.1 -16) </li> 
+## 6. Official Source
+* **Document Name:** PMFBY Operational Guidelines (Revised) 
+* **Objective:** Section 1, Page 6 
+* **Eligibility (Coverage of Farmers & Crops):** Sections 3 & 4, Pages 8-9 
+* **Coverage of Risks & Exclusions:** Section 5, Pages 9-10 
+* **Aadhaar Mandate:** Section 6.3, Page 11 
+* **Financial Assistance (Premium Rates & Subsidy):** Section 13, Pages 18-19 
+* **Assessment of Claims (Post-Harvest, Localized, etc.):** Section 21, Pages 43-58
