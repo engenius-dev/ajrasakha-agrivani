@@ -1,5 +1,6 @@
 # Scheme Name: Pradhan Mantri Kisan Urja Suraksha evam Utthaan Mahabhiyaan (PM-KUSUM)
 **State/Central:** Central Government Scheme (Implemented jointly by the Central Government and State Implementing Agencies (SIAs)).
+
 **Target Audience:** Individual farmers, rural landowners, groups of farmers, cooperatives, panchayats, Farmer Producer Organizations (FPOs), and Water User Associations (WUAs). Priority is given to small and marginal farmers and those using micro-irrigation.
 
 ## 1. Objective

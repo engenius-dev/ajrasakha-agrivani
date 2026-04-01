@@ -1,5 +1,6 @@
 # Scheme Name: Pradhan Mantri KIsan SAmman Nidhi (PM-KISAN)
 **State/Central:** Central Government (Central Sector Scheme)
+
 **Target Audience:** Eligible farmers (The PM-KISAN portal is designed only for a single central sector scheme. The scheme provides ₹6,000 per year to eligible farmers in 3 installments.)
 
 ## 1. Objective
