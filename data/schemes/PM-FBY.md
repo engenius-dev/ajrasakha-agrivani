@@ -1,5 +1,6 @@
 # Scheme Name: Pradhan Mantri Fasal Bima Yojana (PMFBY)
-**State/Central:** Central Government Scheme (Implemented jointly by Central and State Governments) 
+**State/Central:** Central Government Scheme (Implemented jointly by Central and State Governments)
+
 **Target Audience:** Farmers cultivating notified crops (small, marginal, loanee, non-loanee, sharecroppers, and tenant farmers).
 
 ## 1. Objective

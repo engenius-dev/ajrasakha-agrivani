@@ -4,7 +4,7 @@
 ## Project Overview
 AgriVani is an intelligent, voice-activated platform designed to simplify the complex landscape of Indian government agricultural schemes. Built for the **Ajrasakha Hackathon Season 2**, this project addresses **Problem Statement 5: "Niti-Setu"**.
 
-By extracting expert-validated rules directly from official government PDFs and utilizing a Python-based RAG (Retrieval-Augmented Generation) engine, AgriVani allows farmers to check their eligibility for schemes through simple voice queries in regional languages (English & Hindi), bridging the gap between policy and the people. 
+By extracting expert-validated rules directly from official government PDFs and utilizing a Python-based RAG (Retrieval-Augmented Generation) engine, AgriVani allows farmers to check their eligibility for schemes through simple voice queries in regional languages (Hindi & Others) along with English, bridging the gap between policy and the people. 
 
 ## Key Features (Phase 1 Target)
 * **Voice-to-Text Input:** An accessible, intuitive UI designed for users with low digital literacy. Farmers can simply speak their details.
