@@ -6,18 +6,17 @@ AgriVani is an intelligent, voice-activated platform designed to simplify the co
 
 By extracting expert-validated rules directly from official government PDFs and utilizing a Python-based RAG (Retrieval-Augmented Generation) engine, AgriVani allows farmers to check their eligibility for schemes through simple voice queries in regional languages (Hindi & Others) along with English, bridging the gap between policy and the people. 
 
-## Key Features (Phase 1 Target)
-* **Voice-to-Text Input:** An accessible, intuitive UI designed for users with low digital literacy. Farmers can simply speak their details.
+## Key Features (Phase 1 MVP)
 * **Document-Backed AI:** Decisions based strictly on official PDFs, preventing AI hallucinations.
 * **Smart Dashboard:** A personalized insights dashboard showing "Eligible" and "Ineligible" schemes, required documents, and exact reasoning.
+* **Extracted Proof:** The AI "shows its work" by quoting the exact paragraph from the scheme guidelines.
 * **Social Category & Landholding Awareness:** Tailored results based on highly specific criteria like caste categories, state-level rules, and land holding sizes.
-* **Cost-Effective Architecture:** Utilizing semantic caching to minimize LLM API calls and reduce latency.
 
 ## Tech Stack
-* **Frontend:** React.js, TypeScript, Vite, Tailwind CSS, shadcn/ui, Framer Motion
-* **Backend:** Node.js, Express.js, TypeScript
-* **AI/Engine:** Python, FastAPI, LangChain (RAG), Google Gemini
-* **Database:** MongoDB Atlas
+* **Frontend:** React.js, TypeScript, Vite, Tailwind CSS, shadcn/ui
+* **Backend Bridge:** Node.js, Express.js, TypeScript
+* **AI RAG Engine:** Python, FastAPI, LangChain, Google Gemini 2.0 Flash
+* **Database:** MongoDB Atlas (Vector Search)
 
 ## Getting Started
 
@@ -32,15 +31,26 @@ By extracting expert-validated rules directly from official government PDFs and 
    git clone https://github.com/engenius-dev/ajrasakha-agrivani.git
    cd ajrasakha-agrivani
 
-2. **Start the Frontend**
+2. **Start the AI Engine (Python)**
    ```sh
-   cd frontend
-   npm install
-   npm run dev
+   cd ai
+   python -m venv venv
+   .\venv\Scripts\activate
+   pip install -r requirements.txt
+   # Create a .env file with MONGODB_URI and GEMINI_API_KEY
+   python ingest.py # Run once to populate Vector DB
+   uvicorn main:app --host 0.0.0.0 --port 8000
 
-3. **Start the Backend (Coming Soon!)**
+3. **Start the Backend Bridge (Node)**
    ```sh
    cd backend
+   npm install
+   # Create a .env file with PORT=5000, MONGODB_URI and GEMINI_API_KEY
+   npx ts-node src/server.ts
+
+4. **Start the Frontend (React)**
+   ```sh
+   cd frontend
    npm install
    npm run dev
 
