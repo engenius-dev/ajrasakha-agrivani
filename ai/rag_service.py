@@ -1,6 +1,6 @@
 """
 AgriVani — rag_service.py  (Swetha)
-Takes farmer's question → searches Harini's PDF chunks → calls Gemini → returns structured answer.
+Takes farmer's question → searches Harini's PDF chunks(Right now it's markdown file chunks) → calls Gemini → returns structured answer.
 Uses local embeddings (all-MiniLM-L6-v2) for search, Gemini only for final answer generation.
 """
  
@@ -29,14 +29,14 @@ def get_eligibility_answer(farmer_query: str, farmer_profile: dict | None = None
         {
             "eligible":     "Yes" | "No" | "Partially" | "Cannot determine",
             "reasoning":    "Explanation citing the rule from the PDF",
-            "source":       "PM-KISAN Operational Guidelines, Section 2.3",
+            "source":       "PM-KISAN Operational Guidelines (2018), Section 2.3, Page 1",
             "scheme_name":  "PM-KISAN",
             "context_used": [ ... ]
         }
     """
  
-    # Step 1 — Search Harini's data in DB1
-    context_chunks = search_schemes(farmer_query, top_k=3)
+    # Step 1 — Search Harini's data in DB1(Increased to top_k=6 to ensure we get all rules)
+    context_chunks = search_schemes(farmer_query, top_k=6)
  
     if not context_chunks:
         return {
@@ -65,29 +65,30 @@ def get_eligibility_answer(farmer_query: str, farmer_profile: dict | None = None
     # Step 4 — Strict RAG prompt (Gemini cannot use outside knowledge)
     prompt = f"""You are AgriVani, an agricultural scheme eligibility assistant for Indian farmers.
  
-CRITICAL RULE: Answer ONLY using the CONTEXT SOURCES below. Do NOT use any outside knowledge.
-If the context does not have enough information, say "Cannot determine".
+CRITICAL RULES:
+1. Answer ONLY using the CONTEXT SOURCES below.
+2. If the user provides land size or crop, focus ONLY on evaluating those specific metrics against the rules.
+3. ASSUME the farmer meets all other unmentioned basic criteria (like citizenship or family definition) unless they explicitly violate them.
  
-CONTEXT SOURCES (extracted from official government scheme documents):
+CONTEXT SOURCES:
 {context_block}
 {profile_block}
  
 FARMER'S QUESTION: {farmer_query}
  
-Based ONLY on the context sources above, determine eligibility.
- 
 Respond with a JSON object in this EXACT format (raw JSON only, no markdown, no backticks):
 {{
-  "eligible": "Yes" or "No" or "Partially" or "Cannot determine",
-  "reasoning": "2-3 sentence explanation directly referencing the rule from the source document",
-  "source": "Exact document name and section, e.g. PM-KISAN Operational Guidelines, Section 2.3",
-  "scheme_name": "Full scheme name e.g. PM-KISAN"
+  "eligible": "Yes" or "No",
+  "reasoning": "2-3 sentence explanation directly referencing the land/crop rules from the source.",
+  "source": "Document name if found, otherwise 'Official Guidelines'",
+  "scheme_name": "Full scheme name",
+  "extracted_proof": "Quote exactly 1-2 clean sentences from the context that proves your reasoning. Strip out all markdown symbols like # or *."
 }}"""
  
     # Step 5 — Call Gemini for final answer
     try:
         response = client.models.generate_content(
-            model="gemini-2.0-flash-lite",
+            model="gemini-flash-lite-latest",
             contents=prompt,
         )
         raw_text = response.text.strip()
