@@ -14,8 +14,8 @@ By extracting expert-validated rules directly from official government PDFs and 
 
 ## Tech Stack
 * **Frontend:** React.js, TypeScript, Vite, Tailwind CSS, shadcn/ui
-* **Backend Bridge:** Node.js, Express.js, TypeScript
-* **AI RAG Engine:** Python, FastAPI, LangChain, Google Gemini 2.0 Flash
+* **Backend:** Node.js, Express.js, TypeScript
+* **AI RAG Engine:** Python, FastAPI, LangChain, Google Gemini Flash Lite Latest
 * **Database:** MongoDB Atlas (Vector Search)
 
 ## Getting Started
