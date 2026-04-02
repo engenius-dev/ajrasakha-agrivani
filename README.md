@@ -45,7 +45,7 @@ By extracting expert-validated rules directly from official government PDFs and 
    ```sh
    cd backend
    npm install
-   # Create a .env file with PORT=5000, MONGODB_URI and GEMINI_API_KEY
+   # Create a .env file with PORT=5000, GEMINI_API_KEY, and the provided AI_ENGINE_URL
    npx ts-node src/server.ts
 
 4. **Start the Frontend (React)**
