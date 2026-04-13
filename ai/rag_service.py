@@ -17,7 +17,7 @@ GEMINI_KEY = os.getenv("GEMINI_API_KEY")
 client = genai.Client(api_key=GEMINI_KEY)
  
  
-def get_eligibility_answer(farmer_query: str, farmer_profile: dict | None = None) -> dict:
+def get_eligibility_answer(farmer_query: str, farmer_profile: dict | None = None, language: str = "English") -> dict:
     """
     Full RAG pipeline:
     1. Search Harini's scheme chunks from DB1
@@ -35,8 +35,8 @@ def get_eligibility_answer(farmer_query: str, farmer_profile: dict | None = None
         }
     """
  
-    # Step 1 — Search Harini's data in DB1(Increased to top_k=6 to ensure we get all rules)
-    context_chunks = search_schemes(farmer_query, top_k=6)
+    # Step 1 — Search Harini's data (Increased top_k to 10 to grab the whole document!)
+    context_chunks = search_schemes(farmer_query, top_k=10)
  
     if not context_chunks:
         return {
@@ -47,48 +47,52 @@ def get_eligibility_answer(farmer_query: str, farmer_profile: dict | None = None
             "context_used": [],
         }
  
-    # Step 2 — Build context block from retrieved chunks
-    context_block = ""
-    for i, chunk in enumerate(context_chunks, 1):
-        context_block += f"\n--- Source {i}: {chunk.get('scheme_name', 'Unknown')} ---\n"
-        context_block += f"File: {chunk.get('source', 'unknown')}\n"
-        context_block += f"{chunk['text']}\n"
- 
-    # Step 3 — Add farmer profile if available
+    # 2. CONTEXT ISOLATION (Crucial for 2.5-flash to not get confused)
+    query_normalized = farmer_query.upper().replace("-", "").replace(" ", "")
+    target_scheme = None
+    if "PMKISAN" in query_normalized: target_scheme = "PMKISAN"
+    elif "PMKUSUM" in query_normalized: target_scheme = "PMKUSUM"
+    elif "PMFBY" in query_normalized: target_scheme = "PMFBY"
+    
+    if target_scheme:
+        isolated_chunks = [c for c in context_chunks if target_scheme in c.get("scheme_name", "").upper().replace("-", "").replace(" ", "")]
+        if isolated_chunks: context_chunks = isolated_chunks
+
+    # 3. Build Blocks
+    context_block = "".join([f"\n--- Source {i} ---\n{c['text']}\n" for i, c in enumerate(context_chunks, 1)])
+    
     profile_block = ""
     if farmer_profile:
-        profile_block = "\n\nFarmer's known details:\n"
-        for key, val in farmer_profile.items():
-            if key not in ("farmer_id", "created_at", "updated_at", "_id"):
-                profile_block += f"  - {key.replace('_', ' ').title()}: {val}\n"
- 
-    # Step 4 — Strict RAG prompt (Gemini cannot use outside knowledge)
-    prompt = f"""You are AgriVani, an agricultural scheme eligibility assistant for Indian farmers.
- 
+        profile_block = "\n\nFarmer's known details:\n" + "".join([f"  - {k.replace('_', ' ').title()}: {v}\n" for k, v in farmer_profile.items() if k not in ("farmer_id", "created_at", "updated_at", "_id")])
+
+    # 4. The Lawyer Prompt (Notice the language instruction added!)
+    prompt = f"""You are AgriVani, an expert agricultural scheme eligibility assistant for Indian farmers.
+    
 CRITICAL RULES:
-1. Answer ONLY using the CONTEXT SOURCES below.
-2. If the user provides land size or crop, focus ONLY on evaluating those specific metrics against the rules.
-3. ASSUME the farmer meets all other unmentioned basic criteria (like citizenship or family definition) unless they explicitly violate them.
- 
+1. Answer ONLY using the CONTEXT SOURCES below. Do NOT use outside knowledge.
+2. Focus ONLY on evaluating specific metrics provided by the user (like land/crop).
+3. ASSUME the farmer meets all other unmentioned basic criteria.
+4. You MUST respond entirely in {language}.
+
 CONTEXT SOURCES:
 {context_block}
 {profile_block}
- 
+
 FARMER'S QUESTION: {farmer_query}
- 
-Respond with a JSON object in this EXACT format (raw JSON only, no markdown, no backticks):
+
+Respond with a JSON object in this EXACT format (raw JSON only):
 {{
-  "eligible": "Yes" or "No",
-  "reasoning": "2-3 sentence explanation directly referencing the land/crop rules from the source.",
-  "source": "Document name if found, otherwise 'Official Guidelines'",
+  "eligible": "Yes" or "No" or "Partially",
+  "reasoning": "2-3 sentence explanation referencing the rule.",
+  "source": "Combine the Document Name with the exact Section/Page. Else, use Document Name.",
   "scheme_name": "Full scheme name",
-  "extracted_proof": "Quote exactly 1-2 clean sentences from the context that proves your reasoning. Strip out all markdown symbols like # or *."
+  "extracted_proof": "Quote exactly 1-2 clean sentences from the context. Do NOT include introductory labels or markdown."
 }}"""
  
-    # Step 5 — Call Gemini for final answer
+    # Step 5 — Call Gemini (Upgraded to 2.5-flash!)
     try:
         response = client.models.generate_content(
-            model="gemini-flash-lite-latest",
+            model="gemini-2.5-flash",
             contents=prompt,
         )
         raw_text = response.text.strip()
@@ -159,4 +163,3 @@ if __name__ == "__main__":
     print(f"Reasoning: {result3['reasoning']}")
     print(f"Source:    {result3['source']}")
     print(f"Scheme:    {result3['scheme_name']}")
- 
