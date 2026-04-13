@@ -6,7 +6,9 @@ AgriVani is an intelligent, voice-activated platform designed to simplify the co
 
 By extracting expert-validated rules directly from official government PDFs and utilizing a Python-based RAG (Retrieval-Augmented Generation) engine, AgriVani allows farmers to check their eligibility for schemes through simple voice queries in regional languages (Hindi & Others) along with English, bridging the gap between policy and the people. 
 
-## Key Features (Phase 1 MVP)
+## Key Features (Phase 1 & 2)
+* **Hybrid Voice Parser:** A lightning-fast, cost-effective keyword heuristic engine backed by a strict-JSON LLM fallback to handle complex conversational speech seamlessly.
+* **API Circuit Breaker:** Graceful degradation architecture that instantly swaps to perfect fallback mock data if third-party LLM services experience downtime, ensuring a crash-proof user experience.
 * **Document-Backed AI:** Decisions based strictly on official PDFs, preventing AI hallucinations.
 * **Smart Dashboard:** A personalized insights dashboard showing "Eligible" and "Ineligible" schemes, required documents, and exact reasoning.
 * **Extracted Proof:** The AI "shows its work" by quoting the exact paragraph from the scheme guidelines.
@@ -15,13 +17,14 @@ By extracting expert-validated rules directly from official government PDFs and 
 ## Tech Stack
 * **Frontend:** React.js, TypeScript, Vite, Tailwind CSS, shadcn/ui
 * **Backend:** Node.js, Express.js, TypeScript
-* **AI RAG Engine:** Python, FastAPI, LangChain, Google Gemini Flash Lite Latest
+* **AI RAG Engine:** Python, FastAPI, LangChain, Google Gemini 2.5 Flash
 * **Database:** MongoDB Atlas (Vector Search)
 
 ## Getting Started
 
 ### Prerequisites
 * [Node.js](https://nodejs.org/) (v18 or higher)
+* Python 3.9+
 * npm or bun
 
 ### Installation & Setup
@@ -52,6 +55,8 @@ By extracting expert-validated rules directly from official government PDFs and 
    ```sh
    cd frontend
    npm install
+   # Rename .env.example to .env and add your Gemini API Key:
+   # VITE_GEMINI_API_KEY=your_gemini_api_key_here
    npm run dev
 
 ## The Team
